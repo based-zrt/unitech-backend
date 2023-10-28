@@ -1,0 +1,28 @@
+name: Submodule Sync
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          repository: based-zrt/unideb.tech
+          submodules: true
+          token: ${{ secrets.CI_TOKEN }}
+      
+      - name: Update submodules
+        run: |
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
+
+      - name: Commit update
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Update submodule references" && git push || echo "No changes to commit"
