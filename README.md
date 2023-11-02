@@ -1,4 +1,4 @@
-# unideb.tech backend
+# unideb.tech backend [![ci badge](https://github.com/based-zrt/unitech-backend/actions/workflows/check.yml/badge.svg)](https://github.com/based-zrt/unitech-backend/actions/workflows/check.yml)
 
 ## License
 ```
