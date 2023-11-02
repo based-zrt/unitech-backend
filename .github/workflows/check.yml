@@ -1,4 +1,4 @@
-name: CI Check
+name: CI Build
 
 on:
   push:
@@ -23,4 +23,6 @@ jobs:
       uses: gradle/gradle-build-action@v2.9.0
     
     - name: Execute Gradle build
-      run: ./gradlew build
+      run: |
+        chmod +x ./gradlew
+        ./gradlew build
