@@ -1,5 +1,9 @@
 # unideb.tech backend [![ci badge](https://github.com/based-zrt/unitech-backend/actions/workflows/check.yml/badge.svg)](https://github.com/based-zrt/unitech-backend/actions/workflows/check.yml)
 
+## Requirements
+- Java 21
+- Intellij IDEA Ultimate
+
 ## License
 ```
     unideb.tech backend
