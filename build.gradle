@@ -23,7 +23,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.session:spring-session-core'
 
-	implementation 'com.h2database:h2:2.2.224'
+	testImplementation group: 'com.h2database', name: 'h2',          version: '2.2.224'
+	implementation group:     'org.jetbrains',  name: 'annotations', version: '24.0.1'
+
 
 
 	compileOnly 'org.projectlombok:lombok'

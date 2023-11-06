@@ -7,7 +7,7 @@
       <env name="DB_PASSWORD" value="testpassword" />
       <env name="DB_DIALECT" value="org.hibernate.dialect.H2Dialect" />
     </envs>
-    <module name="backend.main" />
+    <module name="tech.unideb.backend.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="tech.unideb.backend.BackendApplication" />
     <method v="2">
       <option name="Make" enabled="true" />
