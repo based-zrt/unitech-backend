@@ -23,8 +23,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.session:spring-session-core'
 
-	testImplementation group: 'com.h2database', name: 'h2',          version: '2.2.224'
-	implementation group:     'org.jetbrains',  name: 'annotations', version: '24.0.1'
+	implementation group: 'com.h2database', name: 'h2',          version: '2.2.224'
+	implementation group: 'org.jetbrains',  name: 'annotations', version: '24.0.1'
 
 
 
@@ -39,4 +39,9 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+jar {
+	archiveClassifier.set('')
+	archiveVersion.set('')
 }
