@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+  <configuration default="false" name="run dev" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <module name="tech.unideb.backend.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="tech.unideb.backend.BackendApplication" />
     <method v="2">
