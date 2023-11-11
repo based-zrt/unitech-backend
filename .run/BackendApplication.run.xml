@@ -1,12 +1,5 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-    <envs>
-      <env name="DB_URL" value="jdbc:h2:mem:devdb" />
-      <env name="DB_DRIVER" value="org.h2.Driver" />
-      <env name="DB_USER" value="testuser" />
-      <env name="DB_PASSWORD" value="testpassword" />
-      <env name="DB_DIALECT" value="org.hibernate.dialect.H2Dialect" />
-    </envs>
     <module name="tech.unideb.backend.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="tech.unideb.backend.BackendApplication" />
     <method v="2">
