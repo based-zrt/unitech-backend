@@ -2,6 +2,9 @@ package tech.unideb.backend.model;
 
 import jakarta.persistence.*;
 
+/**
+ * UserConfig model.
+ */
 @Entity
 @Table(name = "user_configs")
 public class UserConfig {

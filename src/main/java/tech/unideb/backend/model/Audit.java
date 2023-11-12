@@ -2,6 +2,9 @@ package tech.unideb.backend.model;
 
 import jakarta.persistence.*;
 
+/**
+ * Audit model.
+ */
 @Entity
 @Table(name = "audits")
 public class Audit {

@@ -1,10 +1,12 @@
 package tech.unideb.backend.model;
 
 import jakarta.persistence.*;
-
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
+/**
+ * User model.
+ */
 @Entity
 @Table(name = "users")
 public class User {
