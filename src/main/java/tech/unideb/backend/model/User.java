@@ -21,4 +21,7 @@ public class User {
     private String lastIp;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @OneToOne
+    @JoinColumn(name = "config_id", referencedColumnName = "id")
+    private UserConfig config;
 }
