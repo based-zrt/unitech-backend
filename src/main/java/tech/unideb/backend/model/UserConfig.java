@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 @Table(name = "user_configs")
 public class UserConfig {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String uploadSecret;
     private boolean embedEnabled;

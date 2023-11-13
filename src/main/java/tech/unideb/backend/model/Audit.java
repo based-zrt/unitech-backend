@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 @Table(name = "audits")
 public class Audit {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "uuid")
