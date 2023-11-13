@@ -16,4 +16,12 @@ public class Audit {
     private User user;
     @Enumerated(EnumType.STRING)
     private AuditAction action;
+
+    private String message;
+
+    public Audit(User user, AuditAction action, String message) {
+        this.user = user;
+        this.action = action;
+        this.message = message;
+    }
 }
