@@ -1,6 +1,8 @@
 package tech.unideb.backend.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import tech.unideb.backend.component.UploadIdGenerator;
 
@@ -9,8 +11,11 @@ import java.time.ZonedDateTime;
 /**
  * Upload model.
  */
+
+@Data
 @Entity
 @Table(name = "uploads")
+@NoArgsConstructor
 public class Upload {
     @Id
     @GenericGenerator(name = "upload_generator", type = UploadIdGenerator.class)

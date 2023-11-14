@@ -1,14 +1,19 @@
 package tech.unideb.backend.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
 /**
  * User model.
  */
+@Data
 @Entity
 @Table(name = "users")
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

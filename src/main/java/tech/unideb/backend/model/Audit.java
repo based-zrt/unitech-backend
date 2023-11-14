@@ -1,12 +1,16 @@
 package tech.unideb.backend.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * Audit model.
+ * Audit log model.
  */
+@Data
 @Entity
 @Table(name = "audits")
+@NoArgsConstructor
 public class Audit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
