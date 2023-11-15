@@ -36,6 +36,8 @@ public class FileStorageServiceImpl implements StorageService {
     }
 
     private Path getFilePath(Upload upload) {
+        // You might wonder why the layering?
+        // most file systems' performance degrades when there are too many files in a single directory
         var hash = Hashing.sha256().hashString(upload.getFileName(), StandardCharsets.UTF_8);
         var layer1 = hash.toString().substring(0, 2);
         var layer2 = hash.toString().substring(2, 4);
