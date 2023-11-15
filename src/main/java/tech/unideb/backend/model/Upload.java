@@ -27,4 +27,8 @@ public class Upload {
     private String fileName;
     private ZonedDateTime uploadDate;
     private long size;
+
+    public String getIdString() {
+        return Long.toString(id, 36);
+    }
 }
