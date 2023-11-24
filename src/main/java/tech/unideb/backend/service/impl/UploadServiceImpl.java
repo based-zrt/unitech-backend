@@ -17,10 +17,12 @@ import tech.unideb.backend.service.UploadService;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
 public class UploadServiceImpl implements UploadService {
+    private static final Random RANDOM = new Random();
     private final StorageService storageService;
     private final UploadRepository uploadRepository;
     private final UserRepository userRepository;
@@ -39,7 +41,7 @@ public class UploadServiceImpl implements UploadService {
 
         var upload = new Upload();
         upload.setUploader(userOpt.get());
-        upload.setFileName(data.getOriginalFilename());
+        upload.setFileName(RANDOM.nextInt(1000, 9999) + "_" + data.getOriginalFilename());
         // maybe set to user timezone later
         upload.setUploadDate(ZonedDateTime.now());
         upload.setSize(data.getSize());
