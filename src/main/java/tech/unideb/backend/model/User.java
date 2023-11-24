@@ -31,4 +31,17 @@ public class User {
     @OneToOne
     @JoinColumn(name = "config_id", referencedColumnName = "id")
     private UserConfig config;
+
+    public User(String username, String passwordHash, String email, ZonedDateTime regDate, String regIp,
+                ZonedDateTime lastLogin, String lastIp, Role role, UserConfig config) {
+        this.username = username;
+        this.passwordHash = passwordHash;
+        this.email = email;
+        this.regDate = regDate;
+        this.regIp = regIp;
+        this.lastLogin = lastLogin;
+        this.lastIp = lastIp;
+        this.role = role;
+        this.config = config;
+    }
 }

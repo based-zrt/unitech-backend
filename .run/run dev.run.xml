@@ -1,5 +1,8 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="run dev" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <envs>
+      <env name="BASE_URL" value="http://localhost:8080/" />
+    </envs>
     <module name="tech.unideb.backend.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="tech.unideb.backend.BackendApplication" />
     <option name="WORKING_DIRECTORY" value="file://run" />

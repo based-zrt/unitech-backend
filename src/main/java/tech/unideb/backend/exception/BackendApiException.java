@@ -43,4 +43,8 @@ public class BackendApiException extends ResponseStatusException {
     public static BackendApiException badRequest(final String reason) {
         return new BackendApiException(HttpStatus.BAD_REQUEST, reason);
     }
+
+    public static BackendApiException forbidden() {
+        return new BackendApiException(HttpStatus.FORBIDDEN);
+    }
 }
