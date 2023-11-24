@@ -32,6 +32,10 @@ public class BackendApiException extends ResponseStatusException {
         return new BackendApiException(HttpStatus.NOT_FOUND);
     }
 
+    public static BackendApiException notFound(final String reason) {
+        return new BackendApiException(HttpStatus.NOT_FOUND, reason);
+    }
+
     public static BackendApiException badRequest() {
         return new BackendApiException(HttpStatus.BAD_REQUEST);
     }
