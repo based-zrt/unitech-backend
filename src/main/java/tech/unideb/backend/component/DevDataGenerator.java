@@ -20,7 +20,7 @@ import java.time.ZonedDateTime;
  */
 @Slf4j
 @Component
-@Profile("default")
+@Profile({"default", "persistent"})
 @RequiredArgsConstructor
 public class DevDataGenerator {
     private final UserRepository userRepository;
@@ -30,7 +30,9 @@ public class DevDataGenerator {
 
     @PostConstruct
     public void populateDatabase() {
-        createUsers();
+        try {
+            createUsers();
+        } catch (Exception ignored) { }
     }
 
     private void createUsers() {

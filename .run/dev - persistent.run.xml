@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="run dev" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+  <configuration default="false" name="dev - persistent" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="persistent" />
     <envs>
       <env name="BASE_URL" value="http://localhost:8080/" />
     </envs>
