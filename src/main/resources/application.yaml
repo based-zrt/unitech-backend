@@ -5,3 +5,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+
+unideb:
+  backend:
+    jwt-issuer: "unideb.tech"
+    jwt-secret: "DEV-SECRET!"
