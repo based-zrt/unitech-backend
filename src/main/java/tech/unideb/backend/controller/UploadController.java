@@ -31,9 +31,4 @@ public class UploadController {
                 BASE_URL + "view/" + upload.getIdString())
         );
     }
-
-    @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<BackendApiException> handleAccessDeniedException(AccessDeniedException e) {
-        return new ResponseEntity<>(BackendApiException.forbidden("Invalid upload secret"), HttpStatus.FORBIDDEN);
-    }
 }
