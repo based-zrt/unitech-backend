@@ -7,6 +7,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import tech.unideb.backend.repository.UserRepository;
 
+/**
+ * Provides user details for Spring Security.
+ */
 @Service
 @RequiredArgsConstructor
 public class UserDetailProvider implements UserDetailsService {
