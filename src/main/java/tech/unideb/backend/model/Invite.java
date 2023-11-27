@@ -15,6 +15,7 @@ public class Invite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "invite_key")
     private String key;
 
     private ZonedDateTime createdDate;

@@ -23,6 +23,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
+    
     @Column(unique = true)
     private String username;
     private String passwordHash;
@@ -31,15 +32,24 @@ public class User implements UserDetails {
     private String regIp;
     private ZonedDateTime lastLogin;
     private String lastIp;
+
     @Enumerated(EnumType.STRING)
     private Role role;
     private boolean locked = false;
+
     @OneToOne
     @JoinColumn(name = "config_id", referencedColumnName = "id")
     private UserConfig config;
 
-    @OneToOne(mappedBy = "id")
+    @OneToOne
+    @JoinColumn(name = "invite_id", referencedColumnName = "id")
     private Invite invite;
+
+    public User(UUID uuid, String username, String email) {
+        this.uuid = uuid;
+        this.username = username;
+        this.email = email;
+    }
 
     public User(String username, String passwordHash, String email, ZonedDateTime regDate, String regIp,
                 ZonedDateTime lastLogin, String lastIp, Role role, UserConfig config) {
