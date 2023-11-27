@@ -10,3 +10,4 @@ unideb:
   backend:
     jwt-issuer: "unideb.tech"
     jwt-secret: "DEV-SECRET!"
+    jwt-expiration: 10

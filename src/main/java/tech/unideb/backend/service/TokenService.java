@@ -8,4 +8,6 @@ public interface TokenService {
     DecodedJWT verify(String token);
 
     User parseUser(DecodedJWT token);
+
+    String createJwt(User user);
 }

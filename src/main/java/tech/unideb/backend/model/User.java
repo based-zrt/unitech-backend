@@ -45,10 +45,11 @@ public class User implements UserDetails {
     @JoinColumn(name = "invite_id", referencedColumnName = "id")
     private Invite invite;
 
-    public User(UUID uuid, String username, String email) {
+    public User(UUID uuid, String username, String email, Role role) {
         this.uuid = uuid;
         this.username = username;
         this.email = email;
+        this.role = role;
     }
 
     public User(String username, String passwordHash, String email, ZonedDateTime regDate, String regIp,
