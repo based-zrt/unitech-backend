@@ -23,7 +23,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
-    
+
     @Column(unique = true)
     private String username;
     private String passwordHash;
@@ -52,7 +52,7 @@ public class User implements UserDetails {
     }
 
     public User(String username, String passwordHash, String email, ZonedDateTime regDate, String regIp,
-                ZonedDateTime lastLogin, String lastIp, Role role, UserConfig config) {
+                ZonedDateTime lastLogin, String lastIp, Role role, UserConfig config, Invite invite) {
         this.username = username;
         this.passwordHash = passwordHash;
         this.email = email;
