@@ -38,6 +38,9 @@ public class User implements UserDetails {
     @JoinColumn(name = "config_id", referencedColumnName = "id")
     private UserConfig config;
 
+    @OneToOne(mappedBy = "id")
+    private Invite invite;
+
     public User(String username, String passwordHash, String email, ZonedDateTime regDate, String regIp,
                 ZonedDateTime lastLogin, String lastIp, Role role, UserConfig config) {
         this.username = username;
