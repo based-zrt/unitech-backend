@@ -33,11 +33,13 @@ public class ViewController {
         var upload = uploadService.getUpload(id);
         if (upload == null) throw BackendApiException.notFound("Upload does not exist");
 
+        var features = upload.getUploader().getFeatures();
         return new ViewResponse(
-                upload.getUploader().getUsername(),
-                upload.getUploadDate().format(TIME_FORMATTER),
-                upload.getSize(),
-                System.getenv("BASE_URL") + "view/" + id + "/raw"
+                upload.toDto(System.getenv("BASE_URL") + "view/" + id + "/raw"),
+                features.isEmbedEnabled(),
+                features.getEmbedTitle(),
+                features.getEmbedDescription(),
+                features.getEmbedColor()
         );
     }
 
@@ -55,7 +57,7 @@ public class ViewController {
                     .cacheControl(CacheControl.maxAge(1, TimeUnit.DAYS))
                     .body(data);
         } catch (IOException e) {
-            throw new BackendApiException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to load image",
+            throw new BackendApiException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to load id",
                     e.getClass().getSimpleName(), e.getMessage());
         }
     }

@@ -49,7 +49,7 @@ public class UploadServiceImpl implements UploadService {
         try {
             storageService.store(upload, data.getResource());
         } catch (IOException e) {
-            throw new BackendApiException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to save image, try again later",
+            throw new BackendApiException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to save id, try again later",
                     e.getClass().getSimpleName(), e.getMessage());
         }
         return upload;
