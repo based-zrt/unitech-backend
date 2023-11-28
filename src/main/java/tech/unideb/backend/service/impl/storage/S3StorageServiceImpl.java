@@ -11,6 +11,7 @@ import software.amazon.awssdk.services.s3.model.BucketAlreadyExistsException;
 import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
+import software.amazon.awssdk.services.s3.model.S3Exception;
 import tech.unideb.backend.model.Upload;
 import tech.unideb.backend.service.StorageService;
 
@@ -32,7 +33,7 @@ public class S3StorageServiceImpl implements StorageService {
 
         try {
             client.createBucket(b -> b.bucket(BUCKET));
-        } catch (BucketAlreadyExistsException ignored) { }
+        } catch (S3Exception ignored) { }
     }
 
     @Override
