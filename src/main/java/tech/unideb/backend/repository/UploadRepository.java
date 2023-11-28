@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import tech.unideb.backend.model.Upload;
 import tech.unideb.backend.model.User;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -18,4 +19,6 @@ public interface UploadRepository extends JpaRepository<Upload, Long> {
 
     @Query("SELECT SUM(u.size) FROM Upload u WHERE u.uploader = :user")
     Optional<Long> totalSizeByUploader(@Param("user") User user);
+
+    List<Upload> findAllByUploader(User user);
 }

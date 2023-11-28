@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import tech.unideb.backend.component.UploadIdGenerator;
+import tech.unideb.backend.dto.UploadDto;
 
 import java.time.ZonedDateTime;
 
@@ -30,5 +31,16 @@ public class Upload {
 
     public String getIdString() {
         return Long.toString(id, 36);
+    }
+
+    public UploadDto toDto(String baseUrl) {
+        return new UploadDto(
+                getIdString(),
+                uploader.getUsername(),
+                baseUrl + "view/" + getIdString() + "/raw",
+                size,
+                fileName,
+                uploadDate.toString()
+        );
     }
 }
