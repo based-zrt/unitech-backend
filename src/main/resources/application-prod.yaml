@@ -9,6 +9,9 @@ spring:
     hibernate:
       ddl-auto: validate
 
+server:
+  forward-headers-strategy: native
+
 unideb:
   backend:
     jwt-issuer: ${JWT_ISSUER}
