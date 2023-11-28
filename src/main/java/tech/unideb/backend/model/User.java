@@ -38,8 +38,8 @@ public class User implements UserDetails {
     private boolean locked = false;
 
     @OneToOne
-    @JoinColumn(name = "config_id", referencedColumnName = "id")
-    private UserConfig config;
+    @JoinColumn(name = "feature_id", referencedColumnName = "id")
+    private UserFeatures features;
 
     @OneToOne
     @JoinColumn(name = "invite_id", referencedColumnName = "id")
@@ -53,7 +53,7 @@ public class User implements UserDetails {
     }
 
     public User(String username, String passwordHash, String email, ZonedDateTime regDate, String regIp,
-                ZonedDateTime lastLogin, String lastIp, Role role, UserConfig config, Invite invite) {
+                ZonedDateTime lastLogin, String lastIp, Role role, UserFeatures features, Invite invite) {
         this.username = username;
         this.passwordHash = passwordHash;
         this.email = email;
@@ -62,7 +62,8 @@ public class User implements UserDetails {
         this.lastLogin = lastLogin;
         this.lastIp = lastIp;
         this.role = role;
-        this.config = config;
+        this.features = features;
+        this.invite = invite;
     }
 
     @Override

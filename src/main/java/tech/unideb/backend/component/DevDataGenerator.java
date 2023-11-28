@@ -8,15 +8,14 @@ import org.springframework.stereotype.Component;
 import tech.unideb.backend.model.Invite;
 import tech.unideb.backend.model.Role;
 import tech.unideb.backend.model.User;
-import tech.unideb.backend.model.UserConfig;
+import tech.unideb.backend.model.UserFeatures;
 import tech.unideb.backend.repository.AuditRepository;
-import tech.unideb.backend.repository.ConfigRepository;
+import tech.unideb.backend.repository.UserFeatureRepository;
 import tech.unideb.backend.repository.InviteRepository;
 import tech.unideb.backend.repository.UploadRepository;
 import tech.unideb.backend.repository.UserRepository;
 
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 /**
  * Generates data for development and testing purposes.
@@ -27,7 +26,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class DevDataGenerator {
     private final UserRepository userRepository;
-    private final ConfigRepository configRepository;
+    private final UserFeatureRepository userFeatureRepository;
     private final UploadRepository uploadRepository;
     private final AuditRepository auditRepository;
     private final InviteRepository inviteRepository;
@@ -40,10 +39,10 @@ public class DevDataGenerator {
 
     private void createUsers() {
         try {
-            var adminConfig = new UserConfig("1234");
+            var adminConfig = new UserFeatures("1234");
             var sus = new User("testadmin", "xd", "test_admin@unideb.tech", ZonedDateTime.now(),
                     "0.0.0.0", ZonedDateTime.now(), "0.0.0.0", Role.ADMIN, adminConfig, null);
-            configRepository.save(adminConfig);
+            userFeatureRepository.save(adminConfig);
             userRepository.save(sus);
         } catch (Exception ignored) { }
     }

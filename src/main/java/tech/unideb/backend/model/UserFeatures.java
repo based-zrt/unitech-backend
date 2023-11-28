@@ -11,15 +11,17 @@ import org.jetbrains.annotations.Nullable;
  */
 @Data
 @Entity
-@Table(name = "user_configs")
+@Table(name = "user_features")
 @NoArgsConstructor
-public class UserConfig {
+public class UserFeatures {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NotNull
     @Column(nullable = false)
     private String uploadSecret;
+    private long totalUploadSize = 500 * 1024 * 1024; // 500 MB total
+    private long uploadMaxSize = 50 * 1024 * 1024; // 50 MB per upload
     private boolean embedEnabled = false;
     @Nullable
     private String embedColor;
@@ -28,7 +30,7 @@ public class UserConfig {
     @Nullable
     private String embedDescription;
 
-    public UserConfig(@NotNull String uploadSecret) {
+    public UserFeatures(@NotNull String uploadSecret) {
         this.uploadSecret = uploadSecret;
     }
 }

@@ -17,6 +17,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String username);
 
-    @Query("SELECT u FROM User u WHERE u.config.uploadSecret = :secret")
+    @Query("SELECT u FROM User u WHERE u.features.uploadSecret = :secret")
     Optional<User> getUserByUploadSecret(@Param("secret") String uploadSecret);
 }

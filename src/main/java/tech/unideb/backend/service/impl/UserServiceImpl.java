@@ -10,9 +10,8 @@ import tech.unideb.backend.exception.BackendApiException;
 import tech.unideb.backend.model.AuditAction;
 import tech.unideb.backend.model.Role;
 import tech.unideb.backend.model.User;
-import tech.unideb.backend.model.UserConfig;
-import tech.unideb.backend.repository.ConfigRepository;
-import tech.unideb.backend.repository.InviteRepository;
+import tech.unideb.backend.model.UserFeatures;
+import tech.unideb.backend.repository.UserFeatureRepository;
 import tech.unideb.backend.repository.UserRepository;
 import tech.unideb.backend.service.AuditService;
 import tech.unideb.backend.service.InviteService;
@@ -29,7 +28,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final ConfigRepository configRepository;
+    private final UserFeatureRepository userFeatureRepository;
     private final PasswordEncoder passwordEncoder;
     private final InviteService inviteService;
     private final AuditService auditService;
@@ -51,7 +50,7 @@ public class UserServiceImpl implements UserService {
         if (invite == null) throw BackendApiException.badRequest("Invalid invite key");
         if (!inviteService.isValid(invite)) throw BackendApiException.badRequest("Invite not valid");
 
-        var config = new UserConfig(UUID.randomUUID().toString());
+        var config = new UserFeatures(UUID.randomUUID().toString());
         var user = new User(
                 form.username(),
                 passwordEncoder.encode(form.password()),
@@ -63,7 +62,7 @@ public class UserServiceImpl implements UserService {
                 Role.USER,
                 config, invite
         );
-        configRepository.save(config);
+        userFeatureRepository.save(config);
         userRepository.save(user);
         invite.addUse();
         inviteService.save(invite);
