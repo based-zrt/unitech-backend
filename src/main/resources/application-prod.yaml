@@ -6,6 +6,8 @@ spring:
     driver-class-name: ${DB_DRIVER}
   jpa:
     database-platform: ${DB_DIALECT}
+    hibernate:
+      ddl-auto: validate
 
 unideb:
   backend:
