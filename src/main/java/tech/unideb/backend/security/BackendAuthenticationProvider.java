@@ -16,7 +16,6 @@ public class BackendAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        log.info("provider authenticate");
         var token = (BackendAuthenticationToken) authentication;
 
         var user = tokenService.parseUser(token.getCredentials());

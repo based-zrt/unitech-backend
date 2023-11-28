@@ -41,7 +41,7 @@ public class User implements UserDetails {
     @JoinColumn(name = "feature_id", referencedColumnName = "id")
     private UserFeatures features;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "invite_id", referencedColumnName = "id")
     private Invite invite;
 
