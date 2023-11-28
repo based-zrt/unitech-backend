@@ -39,7 +39,8 @@ public class Upload {
                 uploader.getUsername(),
                 baseUrl + "view/" + getIdString() + "/raw",
                 size,
-                fileName,
+                // remove the unique filename slug
+                fileName.substring(5),
                 uploadDate.toString()
         );
     }
