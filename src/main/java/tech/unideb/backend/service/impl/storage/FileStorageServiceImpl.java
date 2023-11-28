@@ -1,6 +1,7 @@
 package tech.unideb.backend.service.impl.storage;
 
 import com.google.common.hash.Hashing;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.PathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 @Service
+@Profile("!prod")
 public class FileStorageServiceImpl implements StorageService {
     private static final Path ROOT = Path.of("uploads");
 
