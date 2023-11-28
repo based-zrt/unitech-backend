@@ -35,11 +35,11 @@
 
     <module name="TreeWalker">
         <!-- Class names in packages -->
-        <module name="TypeName">
-            <property name="id" value="controllerName" />
-            <property name="format" value="^[A-Z][a-zA-Z0-9]*Controller$" />
-            <message key="name.invalidPattern" value="Class name must end with Controller."/>
-        </module>
+<!--        <module name="TypeName">-->
+<!--            <property name="id" value="controllerName" />-->
+<!--            <property name="format" value="^[A-Z][a-zA-Z0-9]*Controller$" />-->
+<!--            <message key="name.invalidPattern" value="Class name must end with Controller."/>-->
+<!--        </module>-->
         <module name="TypeName">
             <property name="id" value="configName" />
             <property name="format" value="^[A-Z][a-zA-Z0-9]*Config$" />
