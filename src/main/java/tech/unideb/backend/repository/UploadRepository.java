@@ -17,5 +17,5 @@ public interface UploadRepository extends JpaRepository<Upload, Long> {
     int countByUploader(User user);
 
     @Query("SELECT SUM(u.size) FROM Upload u WHERE u.uploader = :user")
-    long totalSizeByUploader(@Param("user") User user);
+    Optional<Long> totalSizeByUploader(@Param("user") User user);
 }

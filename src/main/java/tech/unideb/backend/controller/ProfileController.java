@@ -12,6 +12,8 @@ import tech.unideb.backend.repository.UploadRepository;
 import tech.unideb.backend.repository.UserRepository;
 import tech.unideb.backend.security.annotations.LoggedIn;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping(path = "/profile", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
@@ -21,18 +23,18 @@ public class ProfileController {
 
     @LoggedIn
     @GetMapping("/info")
-    public ProfileInfoResponse getProfileInfo(HttpServletRequest request) {
+    public ProfileInfoResponse getProfileInfo() {
         var username = SecurityContextHolder.getContext().getAuthentication().getName();
         var user = userRepository.findByUsername(username).orElseThrow();
         int count = uploadRepository.countByUploader(user);
-        long totalSize = uploadRepository.totalSizeByUploader(user);
+        Optional<Long> totalSize = uploadRepository.totalSizeByUploader(user);
         return new ProfileInfoResponse(
                 username,
                 user.getRole(),
                 user.getEmail(),
-                user.getConfig().getUploadSecret(),
+                user.getFeatures().getUploadSecret(),
                 count,
-                totalSize,
-                1);
+                totalSize.orElse(0L),
+                user.getFeatures().getTotalUploadSize());
     }
 }
