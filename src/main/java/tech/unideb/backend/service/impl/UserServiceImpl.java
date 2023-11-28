@@ -81,6 +81,9 @@ public class UserServiceImpl implements UserService {
             throw BackendApiException.badRequest("Invalid credentials");
 
         auditService.audit(user.get(), AuditAction.LOGIN, "Logged in from " + ip);
+        user.get().setLastLogin(ZonedDateTime.now());
+        user.get().setLastIp(ip);
+        userRepository.save(user.get());
         return new LoginResponse(tokenService.createJwt(user.get()));
     }
 }
