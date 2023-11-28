@@ -44,6 +44,10 @@ public class BackendApiException extends ResponseStatusException {
         return new BackendApiException(HttpStatus.BAD_REQUEST, reason);
     }
 
+    public static BackendApiException registerError(final String reason, int fieldId) {
+        return new BackendApiException(HttpStatus.BAD_REQUEST, reason, fieldId);
+    }
+
     public static BackendApiException forbidden() {
         return new BackendApiException(HttpStatus.FORBIDDEN);
     }

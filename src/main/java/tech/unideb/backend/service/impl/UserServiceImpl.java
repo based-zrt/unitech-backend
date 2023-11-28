@@ -36,19 +36,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(RegisterForm form, String ip) {
-        if (form.username().isBlank()) throw BackendApiException.badRequest("Missing username");
-        if (form.password().isBlank()) throw BackendApiException.badRequest("Missing password");
-        if (form.email().isBlank()) throw BackendApiException.badRequest("Missing email");
-        if (form.inviteKey().isBlank()) throw BackendApiException.badRequest("Missing invite key");
+        if (form.username().isBlank()) throw BackendApiException.registerError("Missing username", 0);
+        if (form.password().isBlank()) throw BackendApiException.registerError("Missing password", 1);
+        if (form.email().isBlank()) throw BackendApiException.registerError("Missing email", 2);
+        if (form.inviteKey().isBlank()) throw BackendApiException.registerError("Missing invite key", 3);
 
         if (userRepository.findByUsername(form.username()).isPresent())
-            throw BackendApiException.badRequest("Username already exists");
+            throw BackendApiException.registerError("Username already exists", 0);
         if (userRepository.findByEmail(form.email()).isPresent())
-            throw BackendApiException.badRequest("Email already in use");
+            throw BackendApiException.registerError("Email already in use", 2);
 
         var invite = inviteService.getByKey(form.inviteKey());
-        if (invite == null) throw BackendApiException.badRequest("Invalid invite key");
-        if (!inviteService.isValid(invite)) throw BackendApiException.badRequest("Invite not valid");
+        if (invite == null) throw BackendApiException.registerError("Invalid invite key", 3);
+        if (!inviteService.isValid(invite)) throw BackendApiException.registerError("Invite not valid",
+                3);
 
         var config = new UserFeatures(UUID.randomUUID().toString());
         var user = new User(
