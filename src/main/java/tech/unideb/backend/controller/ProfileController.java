@@ -17,19 +17,18 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "/profile", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
-public class ProfileController {
+public class ProfileController extends AbstractBackendController {
     private final UserRepository userRepository;
     private final UploadRepository uploadRepository;
 
     @LoggedIn
     @GetMapping("/info")
     public ProfileInfoResponse getProfileInfo() {
-        var username = SecurityContextHolder.getContext().getAuthentication().getName();
-        var user = userRepository.findByUsername(username).orElseThrow();
+        var user = getCurrentUser();
         int count = uploadRepository.countByUploader(user);
         Optional<Long> totalSize = uploadRepository.totalSizeByUploader(user);
         return new ProfileInfoResponse(
-                username,
+                user.getUsername(),
                 user.getRole(),
                 user.getEmail(),
                 user.getFeatures().getUploadSecret(),

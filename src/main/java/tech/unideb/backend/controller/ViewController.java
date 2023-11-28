@@ -37,7 +37,7 @@ public class ViewController {
                 upload.getUploader().getUsername(),
                 upload.getUploadDate().format(TIME_FORMATTER),
                 upload.getSize(),
-                "view/" + id + "/raw"
+                System.getenv("BASE_URL") + "view/" + id + "/raw"
         );
     }
 

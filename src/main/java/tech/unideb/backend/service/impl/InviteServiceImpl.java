@@ -9,6 +9,7 @@ import tech.unideb.backend.repository.InviteRepository;
 import tech.unideb.backend.service.InviteService;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,5 +32,10 @@ public class InviteServiceImpl implements InviteService {
     @Override
     public void save(Invite invite) {
         inviteRepository.save(invite);
+    }
+
+    @Override
+    public List<Invite> listAllInvites() {
+        return inviteRepository.findAll();
     }
 }

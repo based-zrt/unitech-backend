@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tech.unideb.backend.dto.InviteDto;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -46,5 +47,16 @@ public class Invite {
 
     public void addUse() {
         this.uses++;
+    }
+
+    public InviteDto toDto() {
+        return new InviteDto(
+                this.key,
+                this.createdDate,
+                this.creator == null ? null : this.creator.getUsername(),
+                this.expiryDate,
+                this.uses,
+                this.maxUses
+        );
     }
 }
