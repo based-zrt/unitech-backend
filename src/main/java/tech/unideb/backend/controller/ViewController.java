@@ -54,6 +54,8 @@ public class ViewController {
                     .contentLength(upload.getSize())
                     .contentType(MediaType.IMAGE_PNG)
                     .lastModified(upload.getUploadDate())
+                    .headers(h -> h.add("Content-Disposition",
+                            "attachment; filename=\"" + upload.getFileName() + "\""))
                     .cacheControl(CacheControl.maxAge(1, TimeUnit.DAYS))
                     .body(data);
         } catch (IOException e) {
