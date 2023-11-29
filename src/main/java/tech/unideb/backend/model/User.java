@@ -32,6 +32,7 @@ public class User implements UserDetails {
     private String regIp;
     private ZonedDateTime lastLogin;
     private String lastIp;
+    private String avatarId;
 
     @Enumerated(EnumType.STRING)
     private Role role;

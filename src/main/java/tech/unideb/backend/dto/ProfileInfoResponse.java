@@ -9,6 +9,7 @@ public record ProfileInfoResponse(
         Role role,
         String email,
         String uploadSecret,
+        String avatarUrl,
         int uploadCount,
         long usedSpace,
         long maxSpace,

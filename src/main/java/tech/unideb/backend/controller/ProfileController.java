@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import tech.unideb.backend.BackendApplication;
 import tech.unideb.backend.dto.ProfileInfoResponse;
 import tech.unideb.backend.dto.SharexConfig;
 import tech.unideb.backend.model.Upload;
@@ -26,12 +27,13 @@ public class ProfileController extends AbstractBackendController {
         var user = getCurrentUser();
         int count = uploadRepository.countByUploader(user);
         Optional<Long> totalSize = uploadRepository.totalSizeByUploader(user);
-        var uploads = uploadRepository.findAllByUploader(user);
+        var uploads = uploadRepository.findAllByUploader(user).stream().filter(Upload::isPublic).toList();
         return new ProfileInfoResponse(
                 user.getUsername(),
                 user.getRole(),
                 user.getEmail(),
                 user.getFeatures().getUploadSecret(),
+                BackendApplication.API_BASE_URL + "/view/" + user.getAvatarId() + "/raw",
                 count,
                 totalSize.orElse(0L),
                 user.getFeatures().getTotalUploadSize(),

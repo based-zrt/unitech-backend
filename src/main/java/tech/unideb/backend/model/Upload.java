@@ -29,6 +29,7 @@ public class Upload {
     private String fileName;
     private ZonedDateTime uploadDate;
     private long size;
+    private boolean hidden = false;
 
     public String getIdString() {
         return Long.toString(id, 36);
@@ -45,5 +46,9 @@ public class Upload {
                 fileName.substring(5),
                 uploadDate.toString()
         );
+    }
+
+    public boolean isPublic() {
+        return !hidden;
     }
 }
