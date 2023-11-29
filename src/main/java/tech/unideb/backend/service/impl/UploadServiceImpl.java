@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import tech.unideb.backend.exception.BackendApiException;
 import tech.unideb.backend.model.Upload;
+import tech.unideb.backend.model.User;
 import tech.unideb.backend.repository.UploadRepository;
 import tech.unideb.backend.repository.UserRepository;
 import tech.unideb.backend.service.StorageService;
@@ -38,9 +39,13 @@ public class UploadServiceImpl implements UploadService {
     public Upload createUpload(@NotNull String userSecret, @NotNull MultipartFile data) {
         var userOpt = userRepository.getUserByUploadSecret(userSecret);
         if (userOpt.isEmpty()) throw BackendApiException.forbidden();
+        return createUpload(userOpt.get(), data);
+    }
 
+    @Override
+    public Upload createUpload(@NotNull User user, @NotNull MultipartFile data) {
         var upload = new Upload();
-        upload.setUploader(userOpt.get());
+        upload.setUploader(user);
         upload.setFileName(RANDOM.nextInt(1000, 9999) + "_" + data.getOriginalFilename());
         // maybe set to user timezone later
         upload.setUploadDate(ZonedDateTime.now());
