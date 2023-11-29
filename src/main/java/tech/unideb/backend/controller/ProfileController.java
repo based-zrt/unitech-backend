@@ -2,10 +2,13 @@ package tech.unideb.backend.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tech.unideb.backend.dto.ProfileInfoResponse;
+import tech.unideb.backend.dto.SharexConfig;
+import tech.unideb.backend.model.Upload;
 import tech.unideb.backend.repository.UploadRepository;
 import tech.unideb.backend.security.annotations.LoggedIn;
 
@@ -32,7 +35,18 @@ public class ProfileController extends AbstractBackendController {
                 count,
                 totalSize.orElse(0L),
                 user.getFeatures().getTotalUploadSize(),
-                uploads.stream().map(upload -> upload.toDto(System.getenv("BASE_URL"))).toList()
+                uploads.stream().map(Upload::toDto).toList()
         );
+    }
+
+    @LoggedIn
+    @GetMapping("/sharexConfig")
+    public ResponseEntity<?> generateSharexConfig() {
+        var user = getCurrentUser();
+        var config = new SharexConfig(user.getFeatures().getUploadSecret());
+        return ResponseEntity.ok()
+                .headers(h -> h.add("Content-Disposition",
+                        "attachment; filename=\"unideb-tech.sxcu\""))
+                .body(config);
     }
 }
