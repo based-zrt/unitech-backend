@@ -1,6 +1,9 @@
 package tech.unideb.backend.controller;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -39,8 +42,9 @@ public class AuthController {
     }
 
     @LoggedIn
-    @GetMapping("/test")
-    public String test() {
-        return "test";
+    @GetMapping("/cookie")
+    public ResponseEntity<?> setAuth(@PathParam("token") String token, HttpServletResponse resp) {
+        resp.addCookie(new Cookie("token", token));
+        return ResponseEntity.ok().build();
     }
 }
