@@ -15,22 +15,13 @@ import tech.unideb.backend.service.UploadService;
 @RestController
 @RequiredArgsConstructor
 public class UploadController extends AbstractBackendController {
-    private static final String BASE_URL = System.getenv("BASE_URL");
     private final UploadService uploadService;
 
     @PostMapping("/upload")
     public ResponseEntity<UploadDto> upload(@RequestPart("secret") String secret,
                                             @RequestPart("image") MultipartFile data) {
         var upload = uploadService.createUpload(secret, data);
-        return ResponseEntity.ok(new UploadDto(
-                upload.getIdString(),
-                upload.getUploader().getUsername(),
-                BASE_URL + "view/" + upload.getIdString() + "/raw",
-                upload.getSize(),
-                upload.getFileName(),
-                upload.getUploadDate().toString()
-                )
-        );
+        return ResponseEntity.ok(upload.toDto());
     }
 
     @LoggedIn
@@ -38,14 +29,6 @@ public class UploadController extends AbstractBackendController {
     public ResponseEntity<UploadDto> uploadFromDashboard(@RequestPart("image") MultipartFile data) {
         var user = getCurrentUser();
         var upload = uploadService.createUpload(user, data);
-        return ResponseEntity.ok(new UploadDto(
-                upload.getIdString(),
-                upload.getUploader().getUsername(),
-                BASE_URL + "view/" + upload.getIdString() + "/raw",
-                upload.getSize(),
-                upload.getFileName(),
-                upload.getUploadDate().toString()
-                )
-        );
+        return ResponseEntity.ok(upload.toDto());
     }
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import tech.unideb.backend.BackendApplication;
 import tech.unideb.backend.component.UploadIdGenerator;
 import tech.unideb.backend.dto.UploadDto;
 
@@ -33,11 +34,12 @@ public class Upload {
         return Long.toString(id, 36);
     }
 
-    public UploadDto toDto(String baseUrl) {
+    public UploadDto toDto() {
         return new UploadDto(
                 getIdString(),
                 uploader.getUsername(),
-                baseUrl + "view/" + getIdString() + "/raw",
+                BackendApplication.BASE_URL + "view/" + getIdString(),
+                BackendApplication.API_BASE_URL + "view/" + getIdString() + "/raw",
                 size,
                 // remove the unique filename slug
                 fileName.substring(5),

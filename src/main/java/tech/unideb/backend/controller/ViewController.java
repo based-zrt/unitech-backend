@@ -35,7 +35,7 @@ public class ViewController {
 
         var features = upload.getUploader().getFeatures();
         return new ViewResponse(
-                upload.toDto(System.getenv("BASE_URL")),
+                upload.toDto(),
                 features.isEmbedEnabled(),
                 features.getEmbedTitle(),
                 features.getEmbedDescription(),
