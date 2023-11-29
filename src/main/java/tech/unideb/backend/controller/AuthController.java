@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tech.unideb.backend.dto.LoginForm;
 import tech.unideb.backend.dto.RegisterForm;
+import tech.unideb.backend.dto.RegisterResponse;
 import tech.unideb.backend.exception.BackendApiException;
 import tech.unideb.backend.security.annotations.Anyone;
 import tech.unideb.backend.security.annotations.LoggedIn;
@@ -34,7 +35,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterForm form, HttpServletRequest request) {
         var user = userService.register(form, request.getRemoteAddr());
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new RegisterResponse("ok"));
     }
 
     @LoggedIn
