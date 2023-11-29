@@ -37,14 +37,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User register(RegisterForm form, String ip) {
         if (form.username().isBlank()) throw BackendApiException.registerError("Missing username", 0);
-        if (form.password().isBlank()) throw BackendApiException.registerError("Missing password", 1);
-        if (form.email().isBlank()) throw BackendApiException.registerError("Missing email", 2);
+        if (form.password().isBlank()) throw BackendApiException.registerError("Missing password", 2);
+        if (form.email().isBlank()) throw BackendApiException.registerError("Missing email", 1);
         if (form.inviteKey().isBlank()) throw BackendApiException.registerError("Missing invite key", 3);
 
         if (userRepository.findByUsername(form.username()).isPresent())
             throw BackendApiException.registerError("Username already exists", 0);
         if (userRepository.findByEmail(form.email()).isPresent())
-            throw BackendApiException.registerError("Email already in use", 2);
+            throw BackendApiException.registerError("Email already in use", 1);
 
         var invite = inviteService.getByKey(form.inviteKey());
         if (invite == null) throw BackendApiException.registerError("Invalid invite key", 3);
