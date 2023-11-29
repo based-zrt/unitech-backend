@@ -12,6 +12,16 @@ spring:
 server:
   forward-headers-strategy: native
 
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      base-path: "/metrics"
+  endpoint:
+    health:
+      enabled: true
+      show-details: never
+
 unideb:
   backend:
     jwt-issuer: ${JWT_ISSUER}
