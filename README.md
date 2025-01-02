@@ -7,7 +7,7 @@
 ## License
 ```
     unideb.tech backend
-    Copyright (C) 2024  unideb.tech Authors
+    Copyright (C) 2025  unideb.tech Authors
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
